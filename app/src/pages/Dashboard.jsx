@@ -65,7 +65,7 @@ const Dashboard = () => {
                 <div className="card-body p-5 position-relative" style={{ zIndex: 2 }}>
                     <div className="row align-items-center">
                         <div className="col-md-8">
-                            <h2 className="fw-bold mb-2 tracking-tight">Welcome back, {gymData?.name || 'Admin'}! 👋</h2>
+                            <h2 className="fw-bold mb-2 tracking-tight">Welcome back, Alpha Fitness Gym! 👋</h2>
                             <p className="lead mb-0 opacity-75">Here's what is happening with your gym today.</p>
                         </div>
                     </div>

@@ -93,8 +93,13 @@ const MonthlyReportModal = ({ onClose }) => {
 };
 
 const Trainers = () => {
-    const [trainers, setTrainers] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [trainers, setTrainers] = useState([
+  { id: 1, name: 'Vikram Rao', phone: '9871234560', specialty: 'Strength & HIIT' },
+  { id: 2, name: 'Pooja Sharma', phone: '9845678901', specialty: 'Yoga & Pilates' },
+  { id: 3, name: 'Rahul Desai', phone: '9823456780', specialty: 'CrossFit & Cardio' },
+  { id: 4, name: 'Neha Kulkarni', phone: '9867890123', specialty: 'Zumba & Dance Fitness' },
+]);
+    const [loading, setLoading] = useState(false);
 
     // UI states
     const [showModal, setShowModal] = useState(false);

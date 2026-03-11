@@ -7,9 +7,16 @@ export default function Classes() {
     const { gymData } = useOutletContext();
     const isOwner = gymData?.role === 'OWNER' || gymData?.role === 'MANAGER';
 
-    const [classes, setClasses] = useState([]);
+    const [classes, setClasses] = useState([
+  { id: 1, name: 'HIIT Training', trainer_name: 'Vikram Rao', start_time: '06:00', end_time: '07:00', capacity: 20, enrolled_count: 14 },
+  { id: 2, name: 'Yoga Flow', trainer_name: 'Pooja Sharma', start_time: '07:15', end_time: '08:15', capacity: 15, enrolled_count: 15 },
+  { id: 3, name: 'Zumba Dance', trainer_name: 'Neha Kulkarni', start_time: '08:30', end_time: '09:30', capacity: 25, enrolled_count: 18 },
+  { id: 4, name: 'Strength & Conditioning', trainer_name: 'Vikram Rao', start_time: '17:00', end_time: '18:00', capacity: 12, enrolled_count: 8 },
+  { id: 5, name: 'CrossFit Basics', trainer_name: 'Rahul Desai', start_time: '18:15', end_time: '19:15', capacity: 15, enrolled_count: 11 },
+  { id: 6, name: 'Pilates Core', trainer_name: 'Pooja Sharma', start_time: '19:30', end_time: '20:30', capacity: 10, enrolled_count: 6 },
+]);
     const [trainers, setTrainers] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
     // Form state

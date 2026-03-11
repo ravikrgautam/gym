@@ -3,8 +3,15 @@ import { Dumbbell, Plus, Trash2 } from 'lucide-react';
 import { apiFetch } from '../utils/api';
 
 const Plans = () => {
-    const [plans, setPlans] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [plans, setPlans] = useState([
+  { id: 1, name: 'Monthly Plan', duration_months: 1, price: 1500 },
+  { id: 2, name: 'Quarterly Plan', duration_months: 3, price: 3500 },
+  { id: 3, name: 'Half-Yearly Plan', duration_months: 6, price: 6000 },
+  { id: 4, name: 'Annual Plan', duration_months: 12, price: 12000 },
+  { id: 5, name: 'Student Plan', duration_months: 1, price: 999 },
+  { id: 6, name: 'Couple Plan', duration_months: 3, price: 5500 },
+]);
+    const [loading, setLoading] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [formData, setFormData] = useState({ name: '', duration_months: 1, price: 0 });
     const [error, setError] = useState(null);

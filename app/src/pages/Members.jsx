@@ -8,9 +8,18 @@ import QRCodeModal from '../components/QRCodeModal';
 
 const Members = () => {
     const { gymData } = useOutletContext();
-    const [members, setMembers] = useState([]);
+    const [members, setMembers] = useState([
+  { id: 1, name: 'Rohit Sharma', phone: '9876543210', status: 'ACTIVE', shift: 'Morning', current_plan_name: 'Monthly Plan', current_plan_fee: 1500, fee_status: 'Paid', plan_expiry_date: '2025-07-15', join_date: '2025-01-15' },
+  { id: 2, name: 'Priya Mehta', phone: '9823456781', status: 'ACTIVE', shift: 'Evening', current_plan_name: 'Quarterly Plan', current_plan_fee: 3500, fee_status: 'Paid', plan_expiry_date: '2025-08-01', join_date: '2025-02-01' },
+  { id: 3, name: 'Arjun Verma', phone: '9812345670', status: 'ACTIVE', shift: 'Morning', current_plan_name: 'Monthly Plan', current_plan_fee: 1500, fee_status: 'Paid', plan_expiry_date: '2025-06-20', join_date: '2025-03-20' },
+  { id: 4, name: 'Sneha Patil', phone: '9898765432', status: 'INACTIVE', shift: 'Evening', current_plan_name: 'Monthly Plan', current_plan_fee: 1500, fee_status: 'Overdue', plan_expiry_date: '2025-05-10', join_date: '2024-12-10' },
+  { id: 5, name: 'Karan Singh', phone: '9845671230', status: 'ACTIVE', shift: 'Both', current_plan_name: 'Annual Plan', current_plan_fee: 12000, fee_status: 'Paid', plan_expiry_date: '2026-01-01', join_date: '2025-01-01' },
+  { id: 6, name: 'Deepika Nair', phone: '9867453210', status: 'ACTIVE', shift: 'Morning', current_plan_name: 'Quarterly Plan', current_plan_fee: 3500, fee_status: 'Paid', plan_expiry_date: '2025-09-15', join_date: '2025-03-15' },
+  { id: 7, name: 'Amit Joshi', phone: '9834512678', status: 'INACTIVE', shift: 'Evening', current_plan_name: 'Monthly Plan', current_plan_fee: 1500, fee_status: 'Overdue', plan_expiry_date: '2025-04-30', join_date: '2025-01-30' },
+  { id: 8, name: 'Meena Kapoor', phone: '9811234560', status: 'ACTIVE', shift: 'Morning', current_plan_name: 'Annual Plan', current_plan_fee: 12000, fee_status: 'Paid', plan_expiry_date: '2026-03-01', join_date: '2025-03-01' },
+]);
     const [plans, setPlans] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [search, setSearch] = useState('');
     const [sortByExpiry, setSortByExpiry] = useState(false);
 

@@ -3,7 +3,18 @@ import { CalendarClock, CheckCircle, Clock, Search, Edit2, Trash2, QrCode } from
 import { apiFetch } from '../utils/api';
 
 export default function Attendance() {
-    const [attendanceList, setAttendanceList] = useState([]);
+    const [attendanceList, setAttendanceList] = useState([
+  { id: 1, member_id: 1, member_name: 'Rohit Sharma', date: '2025-06-12', check_in_time: '06:05', shift: 'Morning', method: 'MANUAL' },
+  { id: 2, member_id: 2, member_name: 'Priya Mehta', date: '2025-06-12', check_in_time: '17:10', shift: 'Evening', method: 'MANUAL' },
+  { id: 3, member_id: 3, member_name: 'Arjun Verma', date: '2025-06-12', check_in_time: '06:30', shift: 'Morning', method: 'QR' },
+  { id: 4, member_id: 5, member_name: 'Karan Singh', date: '2025-06-12', check_in_time: '07:00', shift: 'Morning', method: 'MANUAL' },
+  { id: 5, member_id: 6, member_name: 'Deepika Nair', date: '2025-06-12', check_in_time: '06:15', shift: 'Morning', method: 'QR' },
+  { id: 6, member_id: 8, member_name: 'Meena Kapoor', date: '2025-06-12', check_in_time: '17:45', shift: 'Evening', method: 'MANUAL' },
+  { id: 7, member_id: 1, member_name: 'Rohit Sharma', date: '2025-06-11', check_in_time: '06:10', shift: 'Morning', method: 'MANUAL' },
+  { id: 8, member_id: 3, member_name: 'Arjun Verma', date: '2025-06-11', check_in_time: '06:45', shift: 'Morning', method: 'MANUAL' },
+  { id: 9, member_id: 2, member_name: 'Priya Mehta', date: '2025-06-11', check_in_time: '17:20', shift: 'Evening', method: 'QR' },
+  { id: 10, member_id: 5, member_name: 'Karan Singh', date: '2025-06-11', check_in_time: '18:00', shift: 'Evening', method: 'MANUAL' },
+]);
     const [members, setMembers] = useState([]);
 
     // Check-in Form State
@@ -19,7 +30,7 @@ export default function Attendance() {
     // Filters State
     const [filters, setFilters] = useState({ date: new Date().toISOString().split('T')[0], month: '', member_name: '', shift: '' });
 
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
     // Edit Modal State
