@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "build": "cd app && npm install && npm run build"
+  },
   "dependencies": {
     "pdf-parse": "^2.4.5",
     "pdf2json": "^4.0.2"
