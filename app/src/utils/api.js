@@ -56,11 +56,25 @@ export const apiFetch = async (endpoint, options = {}) => {
 
         return new Promise((resolve) => setTimeout(() => {
             if (method === 'GET') {
+                if (endpoint.includes('/dashboard/revenue-trend')) {
+                    resolve([
+                        { month: 'Jan', revenue: 18000 },
+                        { month: 'Feb', revenue: 22000 },
+                        { month: 'Mar', revenue: 25000 },
+                        { month: 'Apr', revenue: 21000 },
+                        { month: 'May', revenue: 27000 },
+                        { month: 'Jun', revenue: 30000 }
+                    ]);
+                    return;
+                }
                 if (endpoint.includes('/dashboard')) {
                     resolve({
-                        metrics: { total_members: Math.max(localData.length, 12), active_members: 10, revenue_this_month: 25000, active_trainers: 3 },
-                        recent_attendance: [],
-                        expiring_soon: []
+                        activeMembers: 10,
+                        expiredMembers: 2,
+                        expiringSoon: 3,
+                        totalRevenue: 25000,
+                        trainersCount: 3,
+                        recentInvoices: []
                     });
                     return;
                 }
