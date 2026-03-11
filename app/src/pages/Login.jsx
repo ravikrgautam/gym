@@ -15,22 +15,14 @@ const Login = ({ setAuthParams }) => {
         setLoading(true);
 
         try {
-            const res = await fetch('http://localhost:3001/api/auth/request-otp', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email })
-            });
-            const data = await res.json();
-
-            if (res.ok) {
-                setSuccessMessage(data.message); // Will show the "Use 123456" for demo
+            // Temporary bypass for inline deployment
+            setTimeout(() => {
+                setSuccessMessage('OTP sent! Use 123456');
                 setStep(2);
-            } else {
-                setError(data.error || 'Failed to request OTP');
-            }
+                setLoading(false);
+            }, 500);
         } catch (err) {
             setError('Cannot connect to backend server. Is it running?');
-        } finally {
             setLoading(false);
         }
     };
@@ -41,25 +33,24 @@ const Login = ({ setAuthParams }) => {
         setLoading(true);
 
         try {
-            const res = await fetch('http://localhost:3001/api/auth/verify-otp', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, otp })
-            });
-            const data = await res.json();
-
-            if (res.ok) {
+            // Temporary bypass for inline deployment
+            setTimeout(() => {
+                const fakeToken = 'temp-bypass-token';
+                const fakeUser = {
+                    id: '1',
+                    name: 'Demo Gym Workspace',
+                    role: 'OWNER',
+                    email: email
+                };
+                
                 // Save to localStorage
-                localStorage.setItem('gymSaaS_token', data.token);
-                localStorage.setItem('gymSaaS_info', JSON.stringify(data.user));
+                localStorage.setItem('gymSaaS_token', fakeToken);
+                localStorage.setItem('gymSaaS_info', JSON.stringify(fakeUser));
                 // Update App level state to route inside
-                setAuthParams(data.token, data.user);
-            } else {
-                setError(data.error || 'Invalid OTP');
-            }
+                setAuthParams(fakeToken, fakeUser);
+            }, 500);
         } catch (err) {
             setError('Cannot connect to backend server.');
-        } finally {
             setLoading(false);
         }
     };
