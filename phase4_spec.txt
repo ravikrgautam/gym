@@ -1,0 +1,64 @@
+PHASE 4 SPECIFICATION – FULL GYM SAAS
+This document defines the complete and detailed requirements for Phase 4 of the Gym SaaS project. Phase 4
+transforms the Mini Gym SaaS into a full-scale, production-ready Gym Management Platform.
+1. Phase 4 Objective
+The objective of Phase 4 is to build a scalable, secure, and automation-driven Gym SaaS that handles daily gym
+operations end-to-end, including attendance, payments, trainers, and member self-service.
+2. Target Customers
+•     Gyms with 200–2,000 members
+•     Premium fitness studios
+•     Multi-trainer gyms and franchises
+3. Core Product Principles
+•     Automation over manual work
+•     Mobile-first experience
+•     Clear ROI for gym owners
+•     Modular and role-based system
+4. Authentication & Roles
+•     Role-based login: Owner, Manager, Trainer, Member
+•     OTP-based authentication (email/phone)
+•     Multi-branch support (optional)
+5. Member Management (Advanced)
+•     Full member profiles with history
+•     Membership upgrades, freezes, transfers
+•     Attendance and payment history tracking
+6. Attendance Management
+•     QR code-based check-in
+•     Manual check-in by trainer/admin
+•     Batch-wise and time-based attendance rules
+7. Memberships & Subscriptions
+•     Recurring membership plans
+•     Auto-expiry and grace periods
+•     Discounts and proration logic
+----------------Page (0) Break----------------
+8. Billing & Payments
+•     Online payments (UPI/Card)
+•     Cash and manual payment tracking
+•     Auto invoice generation with tax compliance
+9. Trainer & Payroll Management
+•     Trainer profiles and schedules
+•     Attendance-based or fixed payroll calculation
+•     Monthly payroll reports
+10. Class & Batch Scheduling
+•     Class creation with capacity limits
+•     Member enrollment in classes
+•     Trainer assignment and calendars
+11. Automated Communication Engine
+•     Expiry and payment reminders
+•     Class updates and cancellations
+•     WhatsApp, SMS, Email support
+12. Member Portal / App
+•     View membership and attendance
+•     Online payments and invoice download
+•     Notifications and announcements
+13. Analytics & Owner Dashboard
+•     Active vs expired members
+•     Revenue and retention metrics
+•     Trainer performance insights
+14. What Must NOT Be Built
+•     Diet or workout planning
+•     Wearable integrations
+•     AI fitness coaching
+15. Success Criteria
+Phase 4 is successful if gyms use the system daily, churn remains below 3%, and the platform is stable enough
+for scale and investment.
+----------------Page (1) Break----------------

@@ -1,0 +1,166 @@
+/* custom styles */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --primary-color: #6366f1;
+  /* Vibrant Indigo */
+  --secondary-color: #8b5cf6;
+  /* Vibrant Purple */
+  --bg-gradient: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 50%, #f3e8ff 100%);
+  --text-main: #1e293b;
+  --card-bg: rgba(255, 255, 255, 0.95);
+}
+
+html {
+  font-size: 14px; /* Decreased font size for minimalistic feel */
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg-gradient);
+  background-attachment: fixed;
+  color: var(--text-main);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Typography refinements */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  letter-spacing: -0.02em;
+}
+
+/* Navbar */
+.navbar {
+  background: linear-gradient(90deg, #1e1e2f 0%, #2a2a40 100%) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) !important;
+}
+
+.navbar-brand .text-primary {
+  color: #a5b4fc !important;
+  /* Lighter indigo for dark nav */
+}
+
+/* Card Styling */
+.card {
+  border-radius: 16px;
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 40px rgba(99, 102, 241, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.6) !important;
+}
+
+.card-header {
+  background: transparent !important;
+}
+
+/* Form Styling */
+.form-label {
+  color: #475569;
+}
+
+.form-control,
+.form-select {
+  border-radius: 10px;
+  border: 1px solid #cbd5e1;
+  background-color: #f8fafc;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
+  background-color: #ffffff;
+}
+
+/* Buttons */
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  border: none;
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-primary:active {
+  color: white !important;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)) !important;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  color: white;
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+}
+
+.btn-success {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+  border: none;
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-success:hover {
+  transform: translateY(-2px);
+  color: white;
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+}
+
+/* Custom switch */
+.form-check-input:checked {
+  background-color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+}
+
+/* Lock Modal Styling */
+.modal-content {
+  background: linear-gradient(to bottom, #ffffff, #f8fafc);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+/* A4 Receipt Preview Styling - MUST BE WHITE for PDF */
+.receipt-preview-container {
+  background-color: transparent;
+  min-height: 800px;
+}
+
+.receipt-document {
+  width: 210mm;
+  /* A4 width */
+  min-height: 297mm;
+  /* A4 height */
+  margin: 0 auto;
+  background: #ffffff;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Within Receipt - Let's inject some brand color */
+.receipt-document .text-primary {
+  color: var(--primary-color) !important;
+}
+
+.receipt-document .bg-light {
+  background-color: #f1f5f9 !important;
+}
+
+/* Print specific */
+@media print {
+  body {
+    background: white !important;
+  }
+
+  .receipt-document {
+    box-shadow: none !important;
+    border: none !important;
+    margin: 0 !important;
+    border-radius: 0;
+  }
+}
