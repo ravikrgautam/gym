@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Send, CheckCircle, AlertCircle, Settings, Users, CalendarClock, RefreshCw } from 'lucide-react';
 import { differenceInDays, parseISO, isValid } from 'date-fns';
+import { apiFetch } from '../utils/api';
 
 const defaultTemplate = "Hi {{name}}, friendly reminder that your membership at {{gym_name}} expires on {{expiry_date}}. Please renew soon to avoid interruption. 🏋️‍♂️";
 
@@ -19,41 +20,35 @@ const ExpiryReminders = () => {
     const fetchMembers = async () => {
         setLoading(true);
         try {
-            const token = localStorage.getItem('gymSaaS_token');
-            const res = await fetch('http://localhost:3001/api/members', {
-                headers: { 'Authorization': `Bearer ${token}` }
-            });
-            const data = await res.json();
+            const data = await apiFetch('/api/members');
 
-            if (res.ok) {
-                const today = new Date();
-                today.setHours(0, 0, 0, 0);
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
 
-                const processed = data
-                    .filter(m => m.status === 'ACTIVE' || m.status === 'EXPIRED')
-                    .map(member => {
-                        let daysUntilExpiry = null;
-                        const endDateStr = member.plan_expiry_date;
+            const processed = data
+                .filter(m => m.status === 'ACTIVE' || m.status === 'EXPIRED')
+                .map(member => {
+                    let daysUntilExpiry = null;
+                    const endDateStr = member.plan_expiry_date;
 
-                        if (endDateStr) {
-                            const dateObj = parseISO(endDateStr);
-                            if (isValid(dateObj)) {
-                                dateObj.setHours(0, 0, 0, 0);
-                                daysUntilExpiry = differenceInDays(dateObj, today);
-                            }
+                    if (endDateStr) {
+                        const dateObj = parseISO(endDateStr);
+                        if (isValid(dateObj)) {
+                            dateObj.setHours(0, 0, 0, 0);
+                            daysUntilExpiry = differenceInDays(dateObj, today);
                         }
+                    }
 
-                        return {
-                            ...member,
-                            endDate: endDateStr,
-                            daysUntilExpiry,
-                            valid: !!endDateStr && isValid(parseISO(endDateStr)),
-                            sent: false
-                        };
-                    });
+                    return {
+                        ...member,
+                        endDate: endDateStr,
+                        daysUntilExpiry,
+                        valid: !!endDateStr && isValid(parseISO(endDateStr)),
+                        sent: false
+                    };
+                });
 
-                setDbData(processed);
-            }
+            setDbData(processed);
         } catch (err) {
             console.error("Failed to load members", err);
         } finally {

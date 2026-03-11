@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import { Users, Plus, Edit2, Trash2, Search, Download, CreditCard, QrCode } from 'lucide-react';
 import Papa from 'papaparse';
+import { apiFetch } from '../utils/api';
 import PaymentHistoryModal from '../components/PaymentHistoryModal';
 import QRCodeModal from '../components/QRCodeModal';
 
@@ -40,12 +41,8 @@ const Members = () => {
 
     const fetchMembers = async () => {
         try {
-            const token = localStorage.getItem('gymSaaS_token');
-            const res = await fetch('http://localhost:3001/api/members', {
-                headers: { 'Authorization': `Bearer ${token}` }
-            });
-            const data = await res.json();
-            if (res.ok) setMembers(data);
+            const data = await apiFetch('/api/members');
+            setMembers(data);
         } catch (err) {
             console.error("Error fetching members:", err);
         } finally {
@@ -55,12 +52,8 @@ const Members = () => {
 
     const fetchPlans = async () => {
         try {
-            const token = localStorage.getItem('gymSaaS_token');
-            const res = await fetch('http://localhost:3001/api/plans', {
-                headers: { 'Authorization': `Bearer ${token}` }
-            });
-            const data = await res.json();
-            if (res.ok) setPlans(data);
+            const data = await apiFetch('/api/plans');
+            setPlans(data);
         } catch (err) {
             console.error("Error fetching plans:", err);
         }
@@ -89,31 +82,22 @@ const Members = () => {
 
     const handleSave = async (e) => {
         e.preventDefault();
-        const token = localStorage.getItem('gymSaaS_token');
         const isEditing = !!editingMember;
-        const url = isEditing
-            ? `http://localhost:3001/api/members/${editingMember.id}`
-            : `http://localhost:3001/api/members`;
+        const endpoint = isEditing
+            ? `/api/members/${editingMember.id}`
+            : `/api/members`;
 
         try {
-            const res = await fetch(url, {
+            const data = await apiFetch(endpoint, {
                 method: isEditing ? 'PUT' : 'POST',
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json'
-                },
                 body: JSON.stringify(formData)
             });
 
-            const data = await res.json();
-
-            if (res.ok) {
-                setShowModal(false);
-                fetchMembers();
-                if (!isEditing) {
-                    setPaymentMember(data);
-                    setShowDirectPaymentModal(true);
-                }
+            setShowModal(false);
+            fetchMembers();
+            if (!isEditing) {
+                setPaymentMember(data);
+                setShowDirectPaymentModal(true);
             }
         } catch (err) {
             console.error("Failed to save member:", err);
@@ -124,13 +108,8 @@ const Members = () => {
         if (!window.confirm("Are you sure you want to delete this member?")) return;
 
         try {
-            const token = localStorage.getItem('gymSaaS_token');
-            const res = await fetch(`http://localhost:3001/api/members/${id}`, {
-                method: 'DELETE',
-                headers: { 'Authorization': `Bearer ${token}` }
-            });
-
-            if (res.ok) fetchMembers();
+            await apiFetch(`/api/members/${id}`, { method: 'DELETE' });
+            fetchMembers();
         } catch (err) {
             console.error("Failed to delete member:", err);
         }

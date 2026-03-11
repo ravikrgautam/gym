@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Download, Plus, FileText, ChevronRight } from 'lucide-react';
 import PaymentModal from './PaymentModal';
 import { exportToPdf } from '../utils/pdfExport';
+import { apiFetch } from '../utils/api';
 
 const PaymentHistoryModal = ({ show, onClose, member, plans }) => {
     const [payments, setPayments] = useState([]);
@@ -13,12 +14,8 @@ const PaymentHistoryModal = ({ show, onClose, member, plans }) => {
         if (!member) return;
         setLoading(true);
         try {
-            const token = localStorage.getItem('gymSaaS_token');
-            const res = await fetch(`http://localhost:3001/api/members/${member.id}/invoices`, {
-                headers: { 'Authorization': `Bearer ${token}` }
-            });
-            const data = await res.json();
-            if (res.ok) setPayments(data);
+            const data = await apiFetch(`/api/members/${member.id}/invoices`);
+            setPayments(data);
         } catch (err) {
             console.error(err);
         } finally {
@@ -32,16 +29,12 @@ const PaymentHistoryModal = ({ show, onClose, member, plans }) => {
 
     const handleSavePayment = async (payload) => {
         try {
-            const token = localStorage.getItem('gymSaaS_token');
-            const res = await fetch(`http://localhost:3001/api/members/${member.id}/invoices`, {
+            await apiFetch(`/api/members/${member.id}/invoices`, {
                 method: 'POST',
-                headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)
             });
-            if (res.ok) {
-                setShowAddPayment(false);
-                fetchPayments();
-            }
+            setShowAddPayment(false);
+            fetchPayments();
         } catch (err) {
             console.error(err);
         }
