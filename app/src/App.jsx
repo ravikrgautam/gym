@@ -111,8 +111,14 @@ function Layout({ gymData, handleLogout }) {
 }
 
 function App() {
-    const [token, setToken] = useState(localStorage.getItem('gymSaaS_token'));
-    const [gymData, setGymData] = useState(JSON.parse(localStorage.getItem('gymSaaS_info')) || null);
+    // Temporary bypass for inline deployment
+    const [token, setToken] = useState(localStorage.getItem('gymSaaS_token') || 'temp-bypass-token');
+    const [gymData, setGymData] = useState(JSON.parse(localStorage.getItem('gymSaaS_info')) || {
+        id: '1',
+        name: 'Demo Gym Workspace',
+        role: 'OWNER',
+        email: 'demo@gym.com'
+    });
 
     const setAuthParams = (newToken, newGymData) => {
         setToken(newToken);
